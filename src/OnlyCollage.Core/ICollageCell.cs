@@ -1,12 +1,15 @@
-﻿namespace OnlyCollage.Core;
+﻿using System.Collections.Generic;
+using SixLabors.ImageSharp;
 
-public interface ICollageCell
+namespace OnlyCollage.Core;
+
+public interface ICollageCell : IEnumerable<CollageImage>
 {
-    int Length { get; }
-    int Weight { get; }
-    double ScaleFactor { get; }
+    Point UpperLeftPointer { get; set; }
+    int Height { get; }
+    int Width { get; }
+    double ScaleFactor { get; set; }
     double HorizontalProportion { get; }
     double VertialProporion { get; }
-
-    //void Apply(int width);
+    ICollageCell Apply(int width);
 }

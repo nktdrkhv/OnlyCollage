@@ -9,7 +9,14 @@ var img6 = new CollageImage(Path.Combine("Pics", "6.jpg"));
 var img7 = new CollageImage(Path.Combine("Pics", "7.jpg"));
 
 var row = new CollageRow();
-row.Add(img1).Add(img2).Add(img3);
+var col1 = new CollageColumn();
+var col2 = new CollageColumn();
+var row1 = new CollageRow();
 
-var collage = new CollageCanvas(row, 640, new(0, 0));
+col1.Add(img1).Add(img2);
+row1.Add(img6).Add(img4);
+col2.Add(img5).Add(row1).Add(img3);
+row.Add(col1).Add(img7).Add(col2);
+
+var collage = new CollageCanvas(row, 1500, new(0, 0));
 collage.Combine(Path.Combine("Pics", "output.jpg"));

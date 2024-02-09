@@ -24,14 +24,10 @@ public class CollageImage : ICollageCell
     {
         get
         {
-            if (_position is null)
-            {
-                _position = new(0, 0);
-                return _position;
-            }
-            else
-                return _position;
+            _position ??= new(0, 0);
+            return _position;
         }
+        set => _position = value;
     }
     public int Height
     {
@@ -54,9 +50,9 @@ public class CollageImage : ICollageCell
 
     public ICollageCell Apply(int width, UpperLeftPoint? position = null)
     {
-        _position = position;
-        _height *= width / _width;
-        _width = width;
+        Position = position ?? new(0, 0);
+        Height *= width / Width;
+        Width = width;
         ScaleFactor = 1.0;
         return this;
     }

@@ -30,6 +30,14 @@ public class CollageColumn : CollageLineBase, IAddCollageCell<CollageColumn, Col
 
     public override ICollageCell Apply(int width, UpperLeftPoint? position = null)
     {
-        throw new System.NotImplementedException();
+        position ??= new(0, 0);
+        var shift = 0;
+        foreach (var cell in Cells)
+        {
+            var childPosition = position with { Y = position.Y + shift };
+            cell.Apply(width, childPosition);
+            shift += cell.Height;
+        }
+        return this;
     }
 }

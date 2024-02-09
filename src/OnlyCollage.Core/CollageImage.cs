@@ -51,7 +51,7 @@ public class CollageImage : ICollageCell
     public ICollageCell Apply(int width, UpperLeftPoint? position = null)
     {
         Position = position ?? new(0, 0);
-        Height *= width / Width;
+        Height = (int)((double)width / Width * Height);
         Width = width;
         ScaleFactor = 1.0;
         return this;

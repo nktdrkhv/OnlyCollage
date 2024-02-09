@@ -1,19 +1,17 @@
 {
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            // Используйте IntelliSense, чтобы узнать, какие атрибуты существуют для отладки C#.
-            // Используйте наведение для описания существующих атрибутов
-            // Для получения дополнительных сведений посетите https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            // Если вы изменили требуемые версии .NET Framework, обязательно обновите путь к программе.
-            "program": "${workspaceFolder}/test/OnlyCollage.Core.Tests/bin/Debug/net8.0/OnlyCollage.Core.Tests.dll",
+            "program": "${workspaceFolder}/examples/SimpleOne/bin/Debug/net8.0/SimpleOne.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/test/OnlyCollage.Core.Tests",
-            // Дополнительные сведения о поле \"console\" см. в https://aka.ms/VSCode-CS-LaunchJson-Console
+            "cwd": "${workspaceFolder}/examples/SimpleOne",
             "console": "internalConsole",
             "stopAtEntry": false
         },

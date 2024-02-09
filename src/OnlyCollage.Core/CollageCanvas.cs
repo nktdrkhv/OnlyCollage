@@ -17,7 +17,7 @@ public class CollageCanvas
     public void Combine(string path)
     {
         _imageTree.Apply(_width, _position);
-        var output = new Image<Rgba32>(_imageTree.Width, _imageTree.Height);
+        var output = new Image<Rgba32>(_width, _imageTree.Height);
         foreach (var image in _imageTree)
         {
             using var loadedImage = Image.Load<Rgba32>(image.Path);

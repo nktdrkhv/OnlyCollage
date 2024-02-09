@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 namespace OnlyCollage.Core;
 
@@ -13,7 +14,7 @@ public abstract class CollageLineBase : ICollageCell, IAddCollageCell<CollageLin
     protected ICollageCell? Basis { get; set; }
     protected List<ICollageCell> Cells { get => _cells; }
 
-    public UpperLeftPoint Position => throw new NotImplementedException();
+    public UpperLeftPoint Position => _cells[0].Position;
     public double ScaleFactor { get; set; } = 1.0;
     public int Height
     {
@@ -21,8 +22,9 @@ public abstract class CollageLineBase : ICollageCell, IAddCollageCell<CollageLin
         {
             if (_height < 0)
                 _height = CombineHeight();
-            return _height;
+            return (int)(_height * ScaleFactor);
         }
+        protected set => _height = value;
     }
     public int Width
     {
@@ -30,8 +32,9 @@ public abstract class CollageLineBase : ICollageCell, IAddCollageCell<CollageLin
         {
             if (_width < 0)
                 _width = CombineWidth();
-            return _width;
+            return (int)(_width * ScaleFactor);
         }
+        protected set => _width = value;
     }
 
     public abstract CollageLineBase Add(CollageImage image);

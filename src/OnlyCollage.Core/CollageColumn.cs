@@ -21,16 +21,18 @@ public class CollageColumn : CollageLineBase, IAddCollageCell<CollageColumn, Col
 
     protected override ICollageCell ScaleByLargestProportion()
     {
-        var tallest = Cells.MaxBy(cell => cell.Width / cell.Height)!;
+        var tallest = Cells.MaxBy(cell => (double)cell.Height / cell.Width)!;
         for (int i = 0; i < Cells.Count; i++)
             if (tallest != Cells[i])
-                Cells[i].ScaleFactor = tallest.Width / Cells[i].Width;
+                Cells[i].ScaleFactor = (double)tallest.Width / Cells[i].Width;
         return tallest;
     }
 
     public override ICollageCell Apply(int width, UpperLeftPoint? position = null)
     {
         position ??= new(0, 0);
+        if (Basis is null)
+            ScaleByLargestProportion();
         var shift = 0;
         foreach (var cell in Cells)
         {
@@ -38,6 +40,9 @@ public class CollageColumn : CollageLineBase, IAddCollageCell<CollageColumn, Col
             cell.Apply(width, childPosition);
             shift += cell.Height;
         }
+        Height = -1;
+        Width = -1;
+        ScaleFactor = 1.0;
         return this;
     }
 }

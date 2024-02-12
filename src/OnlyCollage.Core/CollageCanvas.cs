@@ -7,11 +7,11 @@ namespace OnlyCollage.Core;
 public class CollageCanvas
 {
     private readonly ICollageCell _imageTree;
-    private readonly UpperLeftPoint _position;
+    private readonly UpperLeftPoint? _position;
     private readonly int _width;
     // private type _backgroundColor;
 
-    public CollageCanvas(ICollageCell imageTree, int width, UpperLeftPoint position) =>
+    public CollageCanvas(ICollageCell imageTree, int width, UpperLeftPoint? position = null) =>
         (_imageTree, _width, _position) = (imageTree, width, position);
 
     public void Combine(string path)

@@ -1,5 +1,5 @@
+using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace OnlyCollage.Core;
 
@@ -39,7 +39,7 @@ public class CollageRow : CollageLineBase, IAddCollageCell<CollageRow, CollageCo
         foreach (var cell in Cells)
         {
             var childPosition = position with { X = position.X + shift };
-            var childWidth = (int)(cell.Width * proportion);
+            var childWidth = (int)Math.Round(cell.Width * proportion);
             cell.Apply(childWidth, childPosition);
             shift += cell.Width;
         }

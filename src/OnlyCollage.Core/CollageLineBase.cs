@@ -22,7 +22,7 @@ public abstract class CollageLineBase : ICollageCell, IAddCollageCell<CollageLin
         {
             if (_height < 0)
                 _height = CombineHeight();
-            return (int)(_height * ScaleFactor);
+            return (int)Math.Round(_height * ScaleFactor);
         }
         protected set => _height = value;
     }
@@ -32,7 +32,7 @@ public abstract class CollageLineBase : ICollageCell, IAddCollageCell<CollageLin
         {
             if (_width < 0)
                 _width = CombineWidth();
-            return (int)(_width * ScaleFactor);
+            return (int)Math.Round(_width * ScaleFactor);
         }
         protected set => _width = value;
     }

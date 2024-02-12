@@ -31,8 +31,7 @@ public class CollageColumn : CollageLineBase, IAddCollageCell<CollageColumn, Col
     public override ICollageCell Apply(int width, UpperLeftPoint? position = null)
     {
         position ??= new(0, 0);
-        if (Basis is null)
-            ScaleByLargestProportion();
+        Basis ??= ScaleByLargestProportion();
         var shift = 0;
         foreach (var cell in Cells)
         {

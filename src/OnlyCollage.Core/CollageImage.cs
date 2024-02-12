@@ -8,6 +8,7 @@ namespace OnlyCollage.Core;
 
 public class CollageImage : ICollageCell
 {
+    //private (int height, int width) _backup;
     private int _height;
     private int _width;
     private UpperLeftPoint? _position;
@@ -17,6 +18,7 @@ public class CollageImage : ICollageCell
         var info = Image.Identify(path);
         _height = info.Height;
         _width = info.Width;
+        //_backup = (_height, _width);
         Path = path;
     }
 
@@ -31,12 +33,12 @@ public class CollageImage : ICollageCell
     }
     public int Height
     {
-        get => (int)(_height * ScaleFactor);
+        get => (int)Math.Round(_height * ScaleFactor);
         set => _height = value;
     }
     public int Width
     {
-        get => (int)(_width * ScaleFactor);
+        get => (int)Math.Round(_width * ScaleFactor);
         set => _width = value;
     }
     public double ScaleFactor { get; set; } = 1.0;
@@ -51,7 +53,7 @@ public class CollageImage : ICollageCell
     public ICollageCell Apply(int width, UpperLeftPoint? position = null)
     {
         Position = position ?? new(0, 0);
-        Height = (int)((double)width / Width * Height);
+        Height = (int)Math.Round((double)width / Width * Height);
         Width = width;
         ScaleFactor = 1.0;
         return this;
